@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "Arjun.swagger-viewer",
+    "christian-kohler.path-intellisense",
+    "DavidAnson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "donjayamanne.githistory",
+    "liamhammett.inline-parameters",
+    "redhat.vscode-yaml",
+    "steoates.autoimport"
+  ]
+}

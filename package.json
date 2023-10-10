@@ -1,0 +1,26 @@
+{
+  "name": "human-face-detection",
+  "version": "0.0.1",
+  "description": "AWS CloudFront Lambda / TensorFlow facial detection.",
+  "main": "src/app.js",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^4.11.0",
+    "@vladmandic/human": "3.1.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "eslint": "latest",
+    "mocha": "^9.2.2",
+    "lambda-tester": "latest",
+    "swagger-jsdoc": "latest"
+  },
+  "scripts": {
+    "genapi": "swagger-jsdoc -d src/openapi.js -o src/swagger.json src/app.js 'src/routes/**/*.js'",
+    "gendoc": "jsdoc -d doc -r src",
+    "lint": "eslint src test",
+    "test": "mocha --require test/mocha.env.js 'test/**/*.js'"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

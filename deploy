@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Deploy Lambda functions to Amazon CloudFront.
+#
+# Dependencies:
+#   aws-sam-cli
+#
+
+#
+# Check dependencies.
+#
+if [ ! `which sam` ]; then
+  echo "aws-sam-cli is not installed. Exiting."
+  exit 1
+fi
+
+#
+# Deploy functions.
+#
+sam build && sam deploy

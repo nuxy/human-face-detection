@@ -1,0 +1,85 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda function
+
+Globals:
+  Api:
+    Cors:
+      AllowHeaders: "'Content-Type'"
+      AllowMethods: "'OPTIONS, POST'"
+      AllowOrigin: "'*'"
+  Function:
+    Timeout: 15
+
+Resources:
+  HumanFaceApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Human face API
+      PackageType: Image
+      AutoPublishAlias: Auto
+      Events:
+        Detect:
+          Type: Api
+          Properties:
+            Method: post
+            Path: /detect
+      Role: !GetAtt LambdaRole.Arn
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: ./
+
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${AWS::StackName}-humanFaceApi
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          Effect: Allow
+          Principal:
+            Service:
+              - lambda.amazonaws.com
+          Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+  CloudFrontConfig:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Origins:
+          -
+            Id: humanFaceApi
+            DomainName: aws.amazon.com
+            CustomOriginConfig:
+              HTTPPort: 443
+              OriginProtocolPolicy: https-only
+        DefaultCacheBehavior:
+          TargetOriginId: humanFaceApi
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: allow-all
+        CacheBehaviors:
+          -
+            TargetOriginId: humanFaceApi
+            PathPattern: '/*'
+            AllowedMethods:
+              - GET
+              - HEAD
+              - OPTIONS
+              - PUT
+              - PATCH
+              - POST
+              - DELETE
+            ForwardedValues:
+              Headers:
+                - Accept
+                - Authorization
+              QueryString: false
+              Cookies:
+                Forward: none
+            ViewerProtocolPolicy: allow-all
