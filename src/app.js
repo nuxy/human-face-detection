@@ -30,8 +30,9 @@ const config = {
  *             schema:
  *               type: object
  *               properties:
- *                 found:
- *                   type: boolean
+ *                 type: array
+ *                 items:
+ *                   "$ref": "#/components/schemas/TensorFace"
  *       500:
  *         description: Internal Server Error
  *         headers:
@@ -45,7 +46,7 @@ exports.handler = async (event, context) => {
     const params    = event.body && JSON.parse(event.body);
     const base64Img = params?.file;
 
-    let found = false;
+    const data = {faces: null};
 
     if (base64Img) {
       const human = new Human(config);
@@ -56,7 +57,7 @@ exports.handler = async (event, context) => {
       if (buffer) {
         const tensor = human.tf.node.decodeImage(buffer);
 
-        found = (await human.detect(tensor)).face.length > 0;
+        data.faces = (await human.detect(tensor))?.face;
       }
     }
 
@@ -67,7 +68,7 @@ exports.handler = async (event, context) => {
         'Content-Type': 'application/json'
       },
       statusCode: 200,
-      body: JSON.stringify({found})
+      body: JSON.stringify(data)
     };
 
   } catch {

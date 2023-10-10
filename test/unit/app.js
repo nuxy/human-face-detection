@@ -33,7 +33,10 @@ describe('Event handler', function() {
           expect(result.statusCode).to.be.an('number');
           expect(result.statusCode).to.equal(200);
 
-          expect(result.body).to.equal('{"found":true}');
+          const data = JSON.parse(result.body);
+
+          expect(data).to.be.an('object');
+          expect(data.faces).to.be.an('array').that.is.not.empty;
         });
     });
   });
@@ -62,7 +65,10 @@ describe('Event handler', function() {
           expect(result.statusCode).to.be.an('number');
           expect(result.statusCode).to.equal(200);
 
-          expect(result.body).to.equal('{"found":false}');
+          const data = JSON.parse(result.body);
+
+          expect(data).to.be.an('object');
+          expect(data.faces).to.be.an('array').that.is.empty;
         });
     });
   });
