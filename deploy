@@ -15,6 +15,15 @@ if [ ! `which sam` ]; then
 fi
 
 #
+# Support arguments.
+#
+profile_args="--profile default"
+
+if [ "$1" = "--profile" ] && [ -n $2 ]; then
+  profile_args="--profile $2"
+fi
+
+#
 # Deploy functions.
 #
-sam build && sam deploy
+sam build $profile_args && sam deploy $profile_args --resolve-image-repos

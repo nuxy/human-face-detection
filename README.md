@@ -9,7 +9,7 @@ AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.htm
 
 ## Deploying to AWS
 
-    $ ./deploy
+    $ ./deploy --profile <AWS credentials profile>
 
 ## AWS requirements
 
