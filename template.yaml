@@ -9,6 +9,7 @@ Globals:
       AllowMethods: "'OPTIONS, POST'"
       AllowOrigin: "'*'"
   Function:
+    MemorySize: 2048
     Timeout: 15
 
 Resources:
@@ -23,11 +24,36 @@ Resources:
           Type: Api
           Properties:
             Method: post
-            Path: /detect
+            Path: /
       Role: !GetAtt LambdaRole.Arn
     Metadata:
       Dockerfile: Dockerfile
       DockerContext: ./
+
+  LambdaFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !Ref HumanFaceApi
+      AuthType: NONE
+      Cors:
+        AllowHeaders:
+          - Content-Type
+        AllowMethods:
+          - POST
+        AllowOrigins:
+          - '*'
+        ExposeHeaders:
+          - Cache-Control
+          - Content-Type
+      InvokeMode: BUFFERED
+
+  LambdaFunctionUrlPermissions:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref HumanFaceApi
+      Action: lambda:InvokeFunctionUrl
+      Principal: '*'
+      FunctionUrlAuthType: NONE
 
   LambdaRole:
     Type: AWS::IAM::Role
@@ -43,6 +69,7 @@ Resources:
           Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/AdministratorAccess
 
   CloudFrontConfig:
     Type: AWS::CloudFront::Distribution

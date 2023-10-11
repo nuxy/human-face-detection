@@ -11,7 +11,7 @@ const config = {
 /**
  * @openapi
  *
- * /detect:
+ * /:
  *   post:
  *     description: Check image for human faces.
  *     requestBody:
