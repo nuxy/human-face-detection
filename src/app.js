@@ -30,9 +30,10 @@ const config = {
  *             schema:
  *               type: object
  *               properties:
- *                 type: array
- *                 items:
- *                   "$ref": "#/components/schemas/TensorFace"
+ *                 faces:
+ *                   type: array
+ *                   items:
+ *                     "$ref": "#/components/schemas/TensorFace"
  *       500:
  *         description: Internal Server Error
  *         headers:

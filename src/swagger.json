@@ -655,9 +655,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/TensorFace"
+                    "faces": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TensorFace"
+                      }
                     }
                   }
                 }
