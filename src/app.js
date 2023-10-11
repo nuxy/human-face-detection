@@ -4,8 +4,11 @@ const tf    = require('@tensorflow/tfjs-node');
 const Human = require('@vladmandic/human').default;
 
 const config = {
-  body: {enabled: false}, debug: false,
-  modelBasePath: 'file://node_modules/@vladmandic/human/models'
+  modelBasePath: 'file://node_modules/@vladmandic/human/models',
+  body:    {enabled: false},
+  gesture: {enabled: false},
+  hand:    {enabled: false},
+  debug: false
 };
 
 /**
@@ -42,7 +45,7 @@ const config = {
  *               type: string
  *               example: max-age=0
  */
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   try {
     const params    = event.body && JSON.parse(event.body);
     const base64Img = params?.file;
