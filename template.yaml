@@ -78,6 +78,7 @@ Resources:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
+        Comment: Human face API
         Enabled: true
         Origins:
           -
