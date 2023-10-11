@@ -1,5 +1,7 @@
 # human-face-detection
 
+[![Build Status](https://api.travis-ci.com/nuxy/human-face-detection.svg?branch=master)](https://app.travis-ci.com/github/nuxy/human-face-detection)
+
 AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) / [TensorFlow](https://www.tensorflow.org) face detection.
 
 ## Dependencies
@@ -10,6 +12,18 @@ AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.htm
 ## Deploying to AWS
 
     $ ./deploy --profile <AWS credentials profile>
+
+## Invoking the service
+
+```sh
+curl -X 'POST' \
+  'https://<url-id>.lambda-url.<region>.on.aws/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "file": "<base64-image>"
+}'
+```
 
 ## AWS requirements
 
