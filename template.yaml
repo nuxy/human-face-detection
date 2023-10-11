@@ -19,6 +19,9 @@ Resources:
       Description: Human face API
       PackageType: Image
       AutoPublishAlias: Auto
+      Environment:
+        Variables:
+          HUMAN_DEBUG: false
       Events:
         Detect:
           Type: Api

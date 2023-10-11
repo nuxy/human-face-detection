@@ -8,7 +8,7 @@ const config = {
   body:    {enabled: false},
   gesture: {enabled: false},
   hand:    {enabled: false},
-  debug: false
+  debug: (process.env.HUMAN_DEBUG === 'true')
 };
 
 /**
