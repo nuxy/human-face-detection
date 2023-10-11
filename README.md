@@ -4,6 +4,12 @@
 
 AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) / [TensorFlow](https://www.tensorflow.org) face detection.
 
+## Features
+
+- Facial biometrics data that include age, gender, and emotion.
+- Serverless function, scales [on a tight budget](https://s3.amazonaws.com/lambda-tools/pricing-calculator.html).
+- Can be set-up easily (in minutes).
+
 ## Dependencies
 
 - [Docker](https://www.docker.com/get-started)
