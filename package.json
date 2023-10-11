@@ -16,7 +16,6 @@
   },
   "scripts": {
     "genapi": "swagger-jsdoc -d src/openapi.js -o src/swagger.json src/app.js",
-    "gendoc": "jsdoc -d doc -r src",
     "lint": "eslint src test",
     "test": "mocha --require test/mocha.env.js 'test/**/*.js'"
   },
