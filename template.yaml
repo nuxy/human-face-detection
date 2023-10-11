@@ -9,8 +9,8 @@ Globals:
       AllowMethods: "'OPTIONS, POST'"
       AllowOrigin: "'*'"
   Function:
-    MemorySize: 2048
-    Timeout: 15
+    MemorySize: 512
+    Timeout: 30
 
 Resources:
   HumanFaceApi:
