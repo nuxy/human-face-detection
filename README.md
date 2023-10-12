@@ -12,6 +12,7 @@ AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.htm
 
 ## Dependencies
 
+- [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 - [Docker](https://www.docker.com/get-started)
 - [Node.js](https://nodejs.org)
 
