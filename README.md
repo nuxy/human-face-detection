@@ -1,6 +1,6 @@
 # human-face-detection
 
-[![Build Status](https://api.travis-ci.com/nuxy/human-face-detection.svg?branch=master)](https://app.travis-ci.com/github/nuxy/human-face-detection)
+![git Version](https://img.shields.io/github/package-json/v/nuxy/human-face-detection?style=flat-square&svg=true&label=git+package) [![Build Status](https://api.travis-ci.com/nuxy/human-face-detection.svg?branch=master)](https://app.travis-ci.com/github/nuxy/human-face-detection)
 
 AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) / [TensorFlow](https://www.tensorflow.org) face detection.
 
@@ -21,6 +21,8 @@ AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.htm
 
 ## Invoking the service
 
+### Command-line
+
 ```sh
 curl -X 'POST' \
   'https://<url-id>.lambda-url.<region>.on.aws/' \
@@ -29,6 +31,32 @@ curl -X 'POST' \
   -d '{
   "file": "<base64-image>"
 }'
+```
+
+### In Node.js
+
+```js
+const AWS = require('aws-sdk');
+
+const lambda = new AWS.Lambda({region: '<region>'});
+
+const params = {
+  FunctionName: 'HumanFaceApi',
+  InvocationType: 'RequestResponse',
+  LogType: 'Tail',
+  Payload: JSON.stringify({file: '<base64-image>'})
+};
+
+lambda.invoke(params).promise()
+  .then(function({Payload}) {
+    const data = JSON.parse(Payload);
+    
+    console.log(data?.body?.faces));
+  })
+  .catch(function(err) {
+    console.warn(err.message);
+    throw err;
+  });
 ```
 
 ## AWS requirements
@@ -58,6 +86,13 @@ Generate [Swagger](https://swagger.io) OpenAPI definitions:
 Run [Mocha](https://mochajs.org) unit tests:
 
     $ npm run test
+
+## References
+
+- [Setting IAM Permissions and Roles](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-permissions.html)
+- [Scaling and concurrency in Lambda](https://docs.aws.amazon.com/lambda/latest/operatorguide/scaling-concurrency.html)
+- [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html)
+- [AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/index.html)
 
 ## Versioning
 
