@@ -51,7 +51,7 @@ const params = {
 lambda.invoke(params).promise()
   .then(function({Payload}) {
     const data = JSON.parse(Payload);
-    
+
     console.log(data?.body?.faces));
   })
   .catch(function(err) {
@@ -75,6 +75,10 @@ WARNING: The policies above are provided to ensure a successful application depl
 ## Developers
 
 ### CLI options
+
+Starting up a local instance using [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html):
+
+    $ sam local start-api
 
 Run [ESLint](https://eslint.org/) on project sources:
 
