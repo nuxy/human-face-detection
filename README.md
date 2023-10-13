@@ -2,7 +2,7 @@
 
 ![git Version](https://img.shields.io/github/package-json/v/nuxy/human-face-detection?style=flat-square&svg=true&label=git+package) [![Build Status](https://api.travis-ci.com/nuxy/human-face-detection.svg?branch=master)](https://app.travis-ci.com/github/nuxy/human-face-detection)
 
-AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) / [TensorFlow](https://www.tensorflow.org) face detection.
+AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) / [TensorFlow](https://www.tensorflow.org) face detection via [Human](https://github.com/vladmandic/human)
 
 ## Features
 

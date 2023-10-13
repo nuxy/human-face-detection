@@ -1,7 +1,7 @@
 {
   "name": "human-face-detection",
   "version": "0.1.2",
-  "description": "AWS CloudFront Lambda / TensorFlow facial detection.",
+  "description": "AWS CloudFront Lambda / TensorFlow facial detection via Human.",
   "main": "src/app.js",
   "dependencies": {
     "@tensorflow/tfjs-node": "^4.11.0",
