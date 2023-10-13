@@ -3,12 +3,14 @@
 const tf    = require('@tensorflow/tfjs-node');
 const Human = require('@vladmandic/human').default;
 
+const debug = (process.env.HUMAN_DEBUG === 'true');
+
 const config = {
   modelBasePath: 'file://node_modules/@vladmandic/human/models',
   body:    {enabled: false},
   gesture: {enabled: false},
   hand:    {enabled: false},
-  debug: (process.env.HUMAN_DEBUG === 'true')
+  debug
 };
 
 /**
@@ -75,7 +77,9 @@ exports.handler = async (event) => {
       body: JSON.stringify(data)
     };
 
-  } catch {
+  } catch (err) {
+
+    debug && console.warn(err.message);
 
     // Return error response.
     return {
