@@ -12,7 +12,7 @@ describe('Event handler', function() {
   describe('detect face (human)', function() {
     const eventData = {};
 
-    before(async function() {
+    before(function() {
       const base64Img = fs.readFileSync(`${PACKAGE_ROOT}/test/images/human.jpg`, {encoding: 'base64'});
 
       eventData.body = JSON.stringify({file: base64Img});
@@ -44,7 +44,7 @@ describe('Event handler', function() {
   describe('detect face (robot)', function() {
     const eventData = {};
 
-    before(async function() {
+    before(function() {
       const base64Img = fs.readFileSync(`${PACKAGE_ROOT}/test/images/robot.jpg`, {encoding: 'base64'});
 
       eventData.body = JSON.stringify({file: base64Img});
