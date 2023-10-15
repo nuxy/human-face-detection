@@ -20,6 +20,13 @@ AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.htm
 
     $ ./deploy --profile <AWS credentials profile>
 
+The following operations are orchestrated by AWS [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) during execution:
+
+- Docker container image is created and uploaded to AWS [Elastic Container Registry](https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html).
+- AWS [Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) function is created with a configured [Function URL](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html) endpoint.
+- AWS [CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) distribution is created using the new function as origin.
+- Network routing occurs thereby exposing your Lambda function URL
+
 ## Invoking the service
 
 ### Command-line
