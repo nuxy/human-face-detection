@@ -23,7 +23,7 @@ describe('Event handler', function() {
         .event(eventData)
         .expectResult(result => {
 
-          // Asertions.
+          // Assertions.
           expect(result.headers).to.have.property('Cache-Control');
           expect(result.headers['Cache-Control']).to.equal('max-age=0');
 
@@ -55,7 +55,7 @@ describe('Event handler', function() {
         .event(eventData)
         .expectResult(result => {
 
-          // Asertions.
+          // Assertions.
           expect(result.headers).to.have.property('Cache-Control');
           expect(result.headers['Cache-Control']).to.equal('max-age=0');
 
