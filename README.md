@@ -34,11 +34,9 @@ The following operations are orchestrated by AWS [CloudFormation](https://docs.a
 ```sh
 curl -X 'POST' \
   'https://<url-id>.lambda-url.<region>.on.aws/' \
-  -H 'accept: application/json' \
+  -H 'Accept: application/json' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "file": "<base64-image>"
-}'
+  -d '{"file": "<base64-image>"}'
 ```
 
 ### In Node.js
