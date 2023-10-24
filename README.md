@@ -97,6 +97,10 @@ Run [Mocha](https://mochajs.org) unit tests:
 
     $ npm run test
 
+## Performance
+
+Running in Lambda there is overhead that occurs ([cold start](https://docs.aws.amazon.com/lambda/latest/operatorguide/execution-environments.html)) when the environment is first launched.  This overhead does not include [TensorFlow](https://github.com/tensorflow/tfjs) initialization (model loading) which creates its own latency.  Due to this, you can expect a longer response time for the first request.  As long as there is an active Lambda handler (hot start) all subsequent requests will not incurr this overhead.
+
 ## References
 
 - [Setting IAM Permissions and Roles](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-permissions.html)
