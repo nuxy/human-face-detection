@@ -6,7 +6,7 @@ const Human = require('@vladmandic/human').default;
 const debug = (process.env.HUMAN_DEBUG === 'true');
 
 const config = {
-  modelBasePath: 'file://' + (process.env.HUMAN_MODELS_DIR || 'node_modules/@vladmandic/human/models'),
+  modelBasePath: `file://${process.env.HUMAN_MODELS_DIR}`,
   body:    {enabled: false},
   gesture: {enabled: false},
   hand:    {enabled: false},
