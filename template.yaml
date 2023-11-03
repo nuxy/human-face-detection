@@ -22,6 +22,7 @@ Resources:
       Environment:
         Variables:
           HUMAN_DEBUG: false
+          HUMAN_MODELS_DIR: 'node_modules/@vladmandic/human/models'
 
           # TensorFlow logging
           TF_CPP_MIN_LOG_LEVEL: 3

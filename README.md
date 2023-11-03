@@ -65,6 +65,15 @@ lambda.invoke(params).promise()
   });
 ```
 
+## Environment variables
+
+The following function environment overrides can be configured in the SAM [template](https://github.com/nuxy/human-face-detection/blob/master/template.yaml#L23) file:
+
+| Variable name      | Description          | Default value |
+|--------------------|----------------------|---------------|
+| `HUMAN_DEBUG`      | Enable verbose logging to [CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) group | false |
+| `HUMAN_MODELS_DIR` | Relative path to your [custom models](https://github.com/vladmandic/human/wiki/Models) directory | [node_modules/@vladmandic/human/models](https://github.com/vladmandic/human/tree/main/models) |
+
 ## AWS requirements
 
 In order to successfully deploy your application you must have [set-up your AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/gs-cli.html) and have [created an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) with the following [policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html):
