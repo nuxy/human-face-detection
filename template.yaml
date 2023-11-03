@@ -22,6 +22,9 @@ Resources:
       Environment:
         Variables:
           HUMAN_DEBUG: false
+
+          # TensorFlow logging
+          TF_CPP_MIN_LOG_LEVEL: 3
       Events:
         Detect:
           Type: Api
