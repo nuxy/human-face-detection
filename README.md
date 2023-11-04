@@ -41,10 +41,12 @@ curl -X 'POST' \
 
 ### In Node.js
 
-```js
-const AWS = require('aws-sdk');
+#### AWS SDK for JavaScript v3
 
-const lambda = new AWS.Lambda({region: '<region>'});
+```javascript
+const {LambdaClient, InvokeCommand} = require('@aws-sdk/client-lambda');
+
+const client = new LambdaClient({region: '<region>'});
 
 const params = {
   FunctionName: 'HumanFaceApi',
@@ -53,11 +55,39 @@ const params = {
   Payload: JSON.stringify({file: '<base64-image>'})
 };
 
-lambda.invoke(params).promise()
+const command = new InvokeCommand(params);
+
+try {
+  const {PayLoad} = await client.send(command);
+  const data = JSON.parse(Payload);
+
+  console.log(data.statusCode === 200 && data.body?.faces);
+
+} catch (err) {
+  console.warn(err.message);
+  throw err;
+}
+```
+
+#### AWS SDK for JavaScript v2
+
+```javascript
+const AWS = require('aws-sdk');
+
+const client = new AWS.Lambda({region: '<region>'});
+
+const params = {
+  FunctionName: 'HumanFaceApi',
+  InvocationType: 'RequestResponse',
+  LogType: 'Tail',
+  Payload: JSON.stringify({file: '<base64-image>'})
+};
+
+client.invoke(params).promise()
   .then(function({Payload}) {
     const data = JSON.parse(Payload);
 
-    console.log(data?.body?.faces));
+    console.log(data.statusCode === 200 && data.body?.faces);
   })
   .catch(function(err) {
     console.warn(err.message);
