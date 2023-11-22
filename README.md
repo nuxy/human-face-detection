@@ -4,6 +4,8 @@
 
 AWS [CloudFront Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) / [TensorFlow](https://www.tensorflow.org) face detection via [Human](https://github.com/vladmandic/human)
 
+![Preview](https://raw.githubusercontent.com/nuxy/human-face-detection/master/package.png)
+
 ## Features
 
 - Facial biometrics data that include age, gender, and emotion.
